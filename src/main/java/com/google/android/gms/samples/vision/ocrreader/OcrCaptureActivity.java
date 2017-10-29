@@ -344,8 +344,10 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         for(String s: myList){
             Log.d(TAG, s);
         }
+        Log.d(TAG, myList.get(0));
         Intent data = new Intent();
         data.putExtra(TextBlockObject, "yay");
+        data.putStringArrayListExtra("stringData", myList);
         setResult(CommonStatusCodes.SUCCESS, data);
         finish();
         return true;
