@@ -164,34 +164,35 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         statusMessage.setText(R.string.ocr_success);
                         ArrayList<String> myData = data.getStringArrayListExtra("stringData");
                         HashMap<String, ArrayList<Item>> foodMap = new HashMap<String, ArrayList<Item>>();
-//                        for(int i = 0; i<myData.size(); i++){
-//                            if(myData.get(i).equals("Breakfast") || myData.get(i).equals("Lunch") ||myData.get(i).equals("Dinner")){
-//                                //Log.d(TAG, s);
-//                                foodMap.put(myData.get(i),new ArrayList<Item>());
-//                            }
-//                            else if(foodMap.containsKey("Breakfast") && !foodMap.containsKey("Lunch")&& !foodMap.containsKey("Dinner")) {
-//                                ArrayList<Item> currList = foodMap.get("Breakfast");
-//                                currList.add(new Item(0,0,0,0,Double.parseDouble(myData.get[i+1]),myData.get[i],myData.get[i+2]));
-//                                foodMap.put("Breakfast", currList);
-//                                i+=2;
-//                            }
-//                            else if(foodMap.containsKey("Breakfast") && foodMap.containsKey("Lunch")&& !foodMap.containsKey("Dinner")) {
-//                                ArrayList<Item> currList = foodMap.get("Lunch");
-//                                currList.add(currList.add(new Item(0,0,0,0,Double.parseDouble(myData.get[i+1]),myData.get[i],myData.get[i+2])));
-//                                foodMap.put("Lunch", currList);
-//                                i+=2;
-//                            }
-//                            else if(foodMap.containsKey("Breakfast") && foodMap.containsKey("Lunch")&& foodMap.containsKey("Dinner")) {
-//                                ArrayList<Item> currList = foodMap.get("Dinner");
-//                                currList.add(currList.add(new Item(0,0,0,0,Double.parseDouble(myData.get[i+1]),myData.get[i],myData.get[i+2])));
-//                                foodMap.put("Dinner", currList);
-//
-//                            }
-//                        }
-                        //textValue.setText(foodMap.get("Breakfast").get(2));
+                        for(int i = 0; i<myData.size(); i++){
+                            if(myData.get(i).equals("Breakfast") || myData.get(i).equals("Lunch") ||myData.get(i).equals("Dinner")){
+                                //Log.d(TAG, s);
+                                foodMap.put(myData.get(i),new ArrayList<Item>());
+                            }
+                            else if(foodMap.containsKey("Breakfast") && !foodMap.containsKey("Lunch")&& !foodMap.containsKey("Dinner")) {
+                                ArrayList<Item> currList = foodMap.get("Breakfast");
+                                currList.add(new Item(0,0,0,0,Double.parseDouble(myData.get[i+1]),myData.get[i+2],myData.get[i]));
+                                foodMap.put("Breakfast", currList);
+                                i+=2;
+                            }
+                            else if(foodMap.containsKey("Breakfast") && foodMap.containsKey("Lunch")&& !foodMap.containsKey("Dinner")) {
+                                ArrayList<Item> currList = foodMap.get("Lunch");
+                                currList.add(currList.add(new Item(0,0,0,0,Double.parseDouble(myData.get[i+1]),myData.get[i+2],myData.get[i])));
+                                foodMap.put("Lunch", currList);
+                                i+=2;
+                            }
+                            else if(foodMap.containsKey("Breakfast") && foodMap.containsKey("Lunch")&& foodMap.containsKey("Dinner")) {
+                                ArrayList<Item> currList = foodMap.get("Dinner");
+                                currList.add(currList.add(new Item(0,0,0,0,Double.parseDouble(myData.get[i+1]),myData.get[i+2],myData.get[i])));
+                                foodMap.put("Dinner", currList);
+
+                            }
+                        }
+                        textValue.setText("Success");
                         Log.d(TAG, "Text read: " + text);
                     } else {
                         statusMessage.setText(R.string.ocr_failure);
+                        textValue.setText("Failure");
                         Log.d(TAG, "No Text captured, intent data is null");
                     }
                 } else {
